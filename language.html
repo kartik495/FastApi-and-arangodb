@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<style>
+    .center {
+  margin: auto;
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
+}
+</style>
+<body>
+   
+    <div id='div' class="center" >
+        {% for language in languages %}
+        <a href="http://127.0.0.1:8000/languages/{{language}}"><h1>{{language}}</h1></a>
+        {% endfor %}
+    </div>
+    
+</body>
+
+</html>

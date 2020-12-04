@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<body>
+   
+    <label for="password">Enter your Arangodb password</label>
+    <input id="password" type="text" >
+    <button onclick="sumbit()">Submit</button>
+    
+</body>
+<script>
+    async function sumbit(){
+        var password=document.getElementById('password').value;
+        var url='http://127.0.0.1:8000/database/'+password;
+        var http=new XMLHttpRequest();
+        await http.open('GET',url,true);
+        http.onreadystatechange=function(){
+            window.open('http://127.0.0.1:8000/languages','_self');
+        }
+        http.send();
+    }
+
+</script>
+</html>

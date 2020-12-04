@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<style>
+    .center {
+  margin: auto;
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
+}
+</style>
+<body>
+
+   
+    <div class="center" >
+        
+        {% for course in courses|sort(attribute='name') %}
+        <a href="https://www.google.com/search?safe=active&sxsrf=ALeKk00f9LJMJ_xlkSV501o_aG-THM55kw%3A1606667214057&source=hp&ei=zsvDX7aQAcHC3LUPxfa86A4&q={{course.name}}&oq={{course.name}}&gs_lcp=CgZwc3ktYWIQAzIFCAAQyQMyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADICCAA6BwgjEOoCECc6BAgjECc6CAgAEMkDEJECOgUIABCRAjoICAAQsQMQgwE6BQguELEDOgUIABCxAzoHCAAQsQMQClDDG1jSSGC_ZmgBcAB4AIABzwGIAfESkgEGMC4xMy4xmAEAoAEBqgEHZ3dzLXdperABCg&sclient=psy-ab&ved=0ahUKEwi2r8HklajtAhVBIbcAHUU7D-0Q4dUDCAc&uact=5">{{course.name}}</a> overall rating-{{course.rating}}
+        <br/>
+        {% for x in ['vedio quality','qalified instructor','content quality','course pace','course depth and quality','rating'] %}
+        {{x}}
+       
+    <button onclick="update('{{course._key}}','{{x}}','1')">+</button>
+        {{course[x]}}
+        <button onclick="update('{{course._key}}','{{x}}','0')">-</button><br/>
+        {% endfor %}
+        <br/><br/><br/>
+        {% endfor %}
+    </div>
+    
+</body>
+<script>
+    
+   
+    async function update(key,x,no){
+        var url='http://127.0.0.1:8000/'+key+'/'+x+'/'+String( no);
+        var http=new XMLHttpRequest();
+        await http.open('GET',url,true);
+        http.onreadystatechange=function(){
+            window.location.reload();
+        }
+        http.send();
+
+    }
+</script>
+
+</html>
